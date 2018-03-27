@@ -24,6 +24,20 @@ func main() {
 		c.JSON(http.StatusOK, AllBooks())
 	})
 
+	//  create new book
+	engine.POST("/api/books", func(c *gin.Context){
+		var book Book
+		if c.BindJSON(&book) == nil {
+			isbn, created := CreateBook(book)
+			if created {
+				c.Header("Location", "/api/books/" + isbn)
+				c.Status(http.StatusCreated)
+			} else {
+				c.Status(http.StatusConflict)
+			}
+		}
+	})
+
 	//run server on PORT
 	engine.Run(port())
 
