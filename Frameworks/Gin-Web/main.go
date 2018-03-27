@@ -14,6 +14,11 @@ func main() {
 		c.String(http.StatusOK, "pong")
 	})
 
+	//  the hello message endpoint with JSON response from map
+	engine.GET("/hello", func(c *gin.Context){
+		c.JSON(http.StatusOK, gin.H{"message": "Hello Gin Framework."})
+	})
+
 	//run server on PORT
 	engine.Run(port())
 
