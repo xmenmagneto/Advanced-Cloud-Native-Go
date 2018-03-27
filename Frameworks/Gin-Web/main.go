@@ -8,6 +8,14 @@ import (
 
 
 func main() {
+	engine := gin.Default()
+
+	engine.GET("/ping", func(c *gin.Context) {
+		c.String(http.StatusOK, "pong")
+	})
+
+	//run server on PORT
+	engine.Run(port())
 
 }
 
