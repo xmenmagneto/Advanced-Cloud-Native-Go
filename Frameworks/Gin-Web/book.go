@@ -31,3 +31,13 @@ func GetBook(isbn string) (Book, bool) {
 	return book, found
 }
 
+// CreateBook creates a new Book if it does not exist
+func CreateBook(book Book) (string, bool) {
+	isbn := book.ISBN
+	_, exists := books[isbn]
+	if exists {
+		return "", false
+	}
+	books[isbn] = book
+	return isbn, true
+}
