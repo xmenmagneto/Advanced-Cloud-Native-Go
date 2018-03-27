@@ -24,3 +24,10 @@ func AllBooks() []Book {
 	}
 	return values
 }
+
+//  GetBook returns the book for a given ISBN
+func GetBook(isbn string) (Book, bool) {
+	book, found := books[isbn]
+	return book, found
+}
+
