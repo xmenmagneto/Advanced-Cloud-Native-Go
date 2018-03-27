@@ -50,3 +50,8 @@ func UpdateBook(isbn string, book Book) bool {
 	}
 	return exists
 }
+
+//  DeleteBook removes a book from the map by ISBN key
+func DeleteBook(isbn string) {
+	delete(books, isbn)
+}
