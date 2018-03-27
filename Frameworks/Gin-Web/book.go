@@ -41,3 +41,12 @@ func CreateBook(book Book) (string, bool) {
 	books[isbn] = book
 	return isbn, true
 }
+
+//  UpdateBook updates an existing book
+func UpdateBook(isbn string, book Book) bool {
+	_, exists := books[isbn]
+	if exists {
+		books[isbn] = book
+	}
+	return exists
+}
