@@ -49,6 +49,21 @@ func main() {
 		}
 	})
 
+	//  update existing book
+	engine.PUT("/api/books/:isbn", func(c *gin.Context){
+		isbn := c.Params.ByName("isbn")
+
+		var book Book
+		if c.BindJSON(&book) == nil {
+			exists := UpdateBook(isbn, book)
+			if exists {
+				c.Status(http.StatusOK)
+			} else {
+				c.Status(http.StatusNotFound)
+			}
+		}
+	})
+
 	//run server on PORT
 	engine.Run(port())
 
