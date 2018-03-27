@@ -71,6 +71,9 @@ func main() {
 		c.Status(http.StatusOK)
 	})
 
+	//  configuration for static files and templates
+	engine.LoadHTMLGlob("./")
+
 	//run server on PORT
 	engine.Run(port())
 
