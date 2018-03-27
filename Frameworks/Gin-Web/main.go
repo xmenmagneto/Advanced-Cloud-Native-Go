@@ -19,6 +19,11 @@ func main() {
 		c.JSON(http.StatusOK, gin.H{"message": "Hello Gin Framework."})
 	})
 
+	//  get all books
+	engine.GET("/api/books", func(c *gin.Context){
+		c.JSON(http.StatusOK, AllBooks())
+	})
+
 	//run server on PORT
 	engine.Run(port())
 
