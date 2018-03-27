@@ -38,6 +38,17 @@ func main() {
 		}
 	})
 
+	//  get book by ISBN
+	engine.GET("/api/books/:isbn", func(c *gin.Context){
+		isbn := c.Params.ByName("isbn")
+		book, found := GetBook(isbn)
+		if found {
+			c.JSON(http.StatusOK, book)
+		} else {
+			c.AbortWithStatus(http.StatusNotFound)
+		}
+	})
+
 	//run server on PORT
 	engine.Run(port())
 
