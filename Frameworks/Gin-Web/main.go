@@ -72,7 +72,14 @@ func main() {
 	})
 
 	//  configuration for static files and templates
-	engine.LoadHTMLGlob("./")
+	engine.LoadHTMLGlob("./templates/*.html")
+	engine.StaticFile("/favicon.ico", "./favicon.ico")
+
+	engine.GET("/", func(c *gin.Context){
+		c.HTML(http.StatusOK, "index.html", gin.H{
+			"title": "Advanced Cloud Native Go",
+		})
+	})
 
 	//run server on PORT
 	engine.Run(port())
