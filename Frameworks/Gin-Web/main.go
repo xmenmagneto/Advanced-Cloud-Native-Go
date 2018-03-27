@@ -64,6 +64,13 @@ func main() {
 		}
 	})
 
+	//  delete book
+	engine.DELETE("/api/books/:isbn", func(c *gin.Context){
+		isbn := c.Params.ByName("isbn")
+		DeleteBook(isbn)
+		c.Status(http.StatusOK)
+	})
+
 	//run server on PORT
 	engine.Run(port())
 
